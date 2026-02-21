@@ -34,3 +34,7 @@
   * bookmark: user_id, post_id
   * comments: user_i, post_id, body
 
+## deployment
+GitHub (code) → Railway (hosting + MySQL database)
+Both are free. Railway gives you MySQL + app server in one place, and deployment is basically just connecting your GitHub repo. Perfect for showcasing in an interview.
+
