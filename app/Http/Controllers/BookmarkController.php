@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Bookmark;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
 class BookmarkController extends Controller
@@ -30,4 +29,18 @@ class BookmarkController extends Controller
         }
         return redirect()->back();
     }
+
+    /* fetchting bookmartks */
+    public function bookmarks()
+    {
+        $bookmarkedPosts = auth()->user()
+            ->bookmarks() // assuming a bookmarks() relationship on User
+            ->with('post.user', 'post.category')
+            ->latest()
+            ->get()
+            ->pluck('post'); // only get the posts
+
+        return view('bookmarks.index', compact('bookmarkedPosts'));
+    }
+
 }
