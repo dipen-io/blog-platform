@@ -7,11 +7,20 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentController;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+/* Route::get('/dashboard', function () { */
+/*     return view('dashboard'); */
+/* })->middleware(['auth', 'verified'])->name('dashboard'); */
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $bookmarkedPosts = Auth::user()->bookmarkedPosts()->with('category')->get();
+
+    return view('dashboard', compact('bookmarkedPosts'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // AUTH ROUTES FIRST
