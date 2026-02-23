@@ -1,4 +1,3 @@
-<!-- resources/views/welcome.blade.php or any .blade.php file -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -56,109 +55,26 @@
             </div>
         </nav>
 
-    <!-- Main Content -->
-    <main class="container mx-auto mt-8 px-4 space-y-8">
+        <!-- Main Content -->
+        <main class="container mx-auto mt-8 px-4 space-y-8">
             <!-- SECTION 2: List of Blog Cards -->
             <div class="hover:shadow-lg hover:rounded-2xl">
                 <x-featured-blog />
             </div>
 
-    <!-- SECTION 2: List of Blog Cards -->
-    <div>
-        <div class="flex justify-between">
+            <!-- SECTION 2: List of Blog Cards -->
             <div>
-                <h3 class="text-xl font-bold text-gray-900 mb-4">Latest Posts</h3>
+                <!-- latest blog 4  -->
+                <x-latest-blog :posts="$latestPosts" />
             </div>
-            <div class="mr-4 hover:underline cursor-pointer">
-                <a href="/posts" class="text-lg font-bold  text-blue-600 mb-4">
-                    Read More →
-                </a>
-            </div>
+
+        </main>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; {{ date('Y') }} Blog Platform. All rights reserved.</p>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- Blog Card 1 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="{{ asset('images/blog-1.jpg') }}"
-                     alt="Blog Title"
-                     class="w-full h-48 object-cover">
-
-                <div class="p-4">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                        Getting Started with Tailwind CSS
-                    </h4>
-
-                    <!-- Author -->
-                    <div class="flex items-center space-x-2 mt-3">
-                        <img src="{{ asset('images/user-1.jpg') }}"
-                             class="w-6 h-6 rounded-full">
-                        <span class="text-sm text-gray-600">Mike Chen</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blog Card 2 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="{{ asset('images/blog-2.jpg') }}"
-                     alt="Blog Title"
-                     class="w-full h-48 object-cover">
-
-                <div class="p-4">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                        Docker for PHP Developers
-                    </h4>
-
-                    <div class="flex items-center space-x-2 mt-3">
-                        <img src="{{ asset('images/user-2.jpg') }}"
-                             class="w-6 h-6 rounded-full">
-                        <span class="text-sm text-gray-600">Alex Rivera</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blog Card 3 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="{{ asset('images/blog-3.jpg') }}"
-                     alt="Blog Title"
-                     class="w-full h-48 object-cover">
-
-                <div class="p-4">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                        Vue.js 3 Composition API Deep Dive
-                    </h4>
-
-                    <div class="flex items-center space-x-2 mt-3">
-                        <img src="{{ asset('images/user-3.jpg') }}"
-                             class="w-6 h-6 rounded-full">
-                        <span class="text-sm text-gray-600">Emma Wilson</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blog Card 4 -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="{{ asset('images/blog-4.jpg') }}"
-                     alt="Blog Title"
-                     class="w-full h-48 object-cover">
-
-                <div class="p-4">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                        Database Optimization Techniques
-                    </h4>
-
-                    <div class="flex items-center space-x-2 mt-3">
-                        <img src="{{ asset('images/user-4.jpg') }}"
-                             class="w-6 h-6 rounded-full">
-                        <span class="text-sm text-gray-600">David Park</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</main>
+    </footer>
 
     </body>
 </html>
