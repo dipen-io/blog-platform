@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //TODO: new migrations need to for mistacke speaping in cascadeOnDelete
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->casecadeOnDelete();
-            $table->foreignId('post_id')->constrained()->casecadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
 
             $table->unique(['user_id', 'post_id']); //prevent dublicate likes
