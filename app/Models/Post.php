@@ -3,8 +3,61 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    //
+    protected $fillable = [
+        'user_id',
+        'category_id',
+        'title',
+        'slug',
+        'body',
+        'thumbnail',
+        'reading_time',
+        'is_published',
+    ];
+
+    protected $casts = [
+        'is_published' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    // Auto-generate slug from title
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($post) {
+            if (empty($post->slug)) {
+                $post->slug = Str::slug($post->title);
+            }
+        });
+    }
+
+    // Relationships
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    // Accessors
+    public function getThumbnailUrlAttribute(): string
+    {
+        return $this->thumbnail
+            ? asset('storage/' . $this->thumbnail)
+            : asset('images/default-blog.jpg');
+    }
+
+    public function getExcerptAttribute(): string
+    {
+        return Str::limit(strip_tags($this->body), 150);
+    }
 }
