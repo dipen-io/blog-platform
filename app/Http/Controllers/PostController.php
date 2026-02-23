@@ -33,6 +33,7 @@ class PostController extends Controller
     //show single post (public)
     public function show(Post $post): View
     {
+        $post->load(['user', 'category','comments.user']);
         return view('posts.show', compact('post'));
 
     }
