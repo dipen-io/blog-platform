@@ -154,7 +154,22 @@
                                 <span class="font-medium text-sm">{{ $comment->user->name }}</span>
                                 <span class="text-gray-400 text-xs">{{ $comment->created_at->diffForHumans() }}</span>
                             </div>
-                            <p class="text-gray-700">{{ $comment->body }}</p>
+                        @auth
+                        @if(auth()->id() === $comment->user_id || auth()->id() === $post->user_id)
+                        <form method="POST" action="{{ route('comments.destroy', $comment)}}"
+                            onsubmit="return confirm('Delete this comment?')"
+                        >
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500 hover:text-red-700 text-xs font-medium">
+                                Delete
+                            </button>
+
+                        </form>
+                        @endif
+                        @endauth
+                            <!-- Delete Button -->
+  <p class="text-gray-700">{{ $comment->body }}</p>
                         </div>
                     @empty
                         <p class="text-gray-500">No comments yet. Be the first!</p>
