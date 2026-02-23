@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like');
     Route::post('/posts/{post}/bookmark', [BookmarkController::class, 'toggle'])->name('posts.bookmark');
     Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 // PUBLIC ROUTES LAST (these catch wildcards)

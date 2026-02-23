@@ -109,21 +109,36 @@
 
                 </div>
             </article>
+            <!-- Success Message -->
+            @if(session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <!-- Comments Section -->
             <div class="mt-8 bg-white rounded-lg shadow p-6">
-                <h3 class="text-xl font-bold text-gray-900 mb-4">Comments</h3>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">
+                    Comments ({{ $post->comments->count()}})
+                </h3>
 
                 @auth
-                    <form method="POST" action="{{ route('comments.store', $post) }}" class="mb-6">
-                        @csrf
-                        <textarea name="content" rows="3"
-                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                            placeholder="Write a comment..."></textarea>
-                        <button type="submit" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                            Post Comment
-                        </button>
-                    </form>
+            <form method="POST" action="{{ route('comments.store', $post) }}" class="mb-6">
+                    @csrf
+                    <div class="mb-2">
+                        <textarea name="body" rows="3"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 @error('content') border-red-500 @enderror"
+                            placeholder="Write a comment...">{{ old('content') }}</textarea>
+                        @error('content')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <button type="submit"
+                            onclick="this.disabled=true; this.form.submit();"
+                            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        Post Comment
+                    </button>
+                </form>
                 @else
                     <p class="text-gray-500 mb-4">
                         <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Login</a> to comment
@@ -139,7 +154,7 @@
                                 <span class="font-medium text-sm">{{ $comment->user->name }}</span>
                                 <span class="text-gray-400 text-xs">{{ $comment->created_at->diffForHumans() }}</span>
                             </div>
-                            <p class="text-gray-700">{{ $comment->content }}</p>
+                            <p class="text-gray-700">{{ $comment->body }}</p>
                         </div>
                     @empty
                         <p class="text-gray-500">No comments yet. Be the first!</p>
