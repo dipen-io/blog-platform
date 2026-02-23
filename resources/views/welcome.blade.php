@@ -8,7 +8,7 @@
     <body class="bg-gray-100">
 
         <!-- Navigation -->
-        <nav class="bg-gray-800 shadow-lg p-4 m-2 rounded-md">
+        <nav class="bg-white shadow-lg p-4 m-2 rounded-md">
             <div class="container mx-auto flex justify-between items-center">
                 <h1 class="text-2xl font-bold text-blue-600">Blog Platform</h1>
 
@@ -16,7 +16,7 @@
                     @auth
                     <!-- LOGGED IN: Show Profile Dropdown -->
                     <div class="relative group">
-                        <button class="flex items-center space-x-2 text-white font-medium hover:text-blue-600 focus:outline-none py-2">
+                        <button class="flex items-center space-x-2 text-black font-medium hover:text-blue-600 focus:outline-none py-2">
                             <img src="{{ Auth::user()->avatar_url }}" class="w-8 h-8 rounded-full border border-gray-300">
                             <span>{{ Auth::user()->name }}</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,7 +36,8 @@
                                 </button>
                             </form>
 
-                            <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <!-- ✅ CORRECT: Link to create post -->
+                            <a href="{{ route('posts.create') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 Add Blog
                             </a>
                         </div>
@@ -55,61 +56,23 @@
             </div>
         </nav>
 
-        <!-- Main Content -->
-<!-- Main Content -->
-<main class="container mx-auto mt-8 px-4 space-y-8">
-
-    <!-- SECTION 1: Featured Blog Post (Image Left, Content Right) -->
-    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-        <div class="md:flex">
-            <!-- Left: Blog Image -->
-            <div class="md:w-1/2">
-                <img src="{{ asset('images/blog-featured.jpg') }}"
-                     alt="Featured Blog"
-                     class="w-full h-64 md:h-full object-cover">
+    <!-- Main Content -->
+    <main class="container mx-auto mt-8 px-4 space-y-8">
+            <!-- SECTION 2: List of Blog Cards -->
+            <div class="hover:shadow-lg hover:rounded-2xl">
+                <x-featured-blog />
             </div>
-
-            <!-- Right: Blog Content -->
-            <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
-                <div class="flex items-center space-x-2 mb-4">
-                    <span class="bg-blue-100 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full">
-                        Technology
-                    </span>
-                    <span class="text-gray-400 text-sm">5 min read</span>
-                </div>
-
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                    Building Modern APIs with Laravel and Best Practices
-                </h2>
-
-                <p class="text-gray-600 mb-6 line-clamp-3">
-                    Learn how to create scalable, maintainable APIs using Laravel's latest features.
-                    We'll cover authentication, rate limiting, API resources, and testing strategies
-                    that will make your backend robust and developer-friendly.
-                </p>
-
-                <!-- Author Info -->
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <img src="{{ asset('images/author-avatar.jpg') }}"
-                             class="w-10 h-10 rounded-full border border-gray-200">
-                        <div>
-                            <p class="text-sm font-medium text-gray-900">Sarah Johnson</p>
-                            <p class="text-xs text-gray-500">Posted on Feb 22, 2025</p>
-                        </div>
-                    </div>
-
-                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
-                        Read More →
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- SECTION 2: List of Blog Cards -->
     <div>
-        <h3 class="text-xl font-bold text-gray-900 mb-4">Latest Posts</h3>
+        <div class="justify-between ">
+            <div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Latest Posts</h3>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold  text-blue-600 mb-4">View More</h3>
+            </div>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
