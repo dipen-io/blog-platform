@@ -58,6 +58,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes')->withTimestamps();  // Should be 'likes' table?
     }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
     // Many to many bookmarked posts
     public function bookmarkedPosts()
