@@ -56,16 +56,16 @@
 
                         <!-- Edit/Delete (if owner) -->
                         @if(auth()->id() === $post->user_id)
-                            <div class="flex space-x-2">
+                            <div class="flex space-x-2 ">
                                 <a href="{{ route('posts.edit', $post) }}"
-                                   class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                   class="text-blue-600 mt-0.5 bg-blue-100 border px-2 rounded-md hover:bg-blue-300 hover:text-blue-800 text-sm font-medium">
                                     Edit
                                 </a>
                                 <form method="POST" action="{{ route('posts.destroy', $post) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                            class="text-red-600 hover:text-red-800 text-sm font-medium"
+                                            class="text-red-600 border px-2 rounded-md hover:bg-blue-300 hover:text-red-800 text-sm font-medium"
                                             onclick="return confirm('Delete this post?')">
                                         Delete
                                     </button>
