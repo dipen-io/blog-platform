@@ -56,9 +56,13 @@
                                 <!-- Meta -->
                                 <div class="mt-4 flex items-center justify-between text-sm text-gray-500">
                                     <div class="flex items-center space-x-2">
-                                        <img src="{{ $post->user->avatar_url }}"
-                                             class="w-6 h-6 rounded-full">
-                                        <span>{{ $post->user->name }}</span>
+                                        @if($post->user)  <!-- This checks if user relationship exists -->
+                                            <img src="{{ $post->user->avatar_url }}"
+                                                 class="w-6 h-6 rounded-full">
+                                            <span>{{ $post->user->name }}</span>  <!-- This gets the name from users table -->
+                                        @else
+                                            <span>Unknown Author</span>
+                                        @endif
                                     </div>
                                     <span>{{ $post->reading_time }} min read</span>
                                 </div>

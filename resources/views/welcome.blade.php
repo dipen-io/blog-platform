@@ -65,12 +65,14 @@
 
     <!-- SECTION 2: List of Blog Cards -->
     <div>
-        <div class="justify-between ">
+        <div class="flex justify-between">
             <div>
                 <h3 class="text-xl font-bold text-gray-900 mb-4">Latest Posts</h3>
             </div>
-            <div>
-                <h3 class="text-lg font-bold  text-blue-600 mb-4">View More</h3>
+            <div class="mr-4 hover:underline cursor-pointer">
+                <a href="/posts" class="text-lg font-bold  text-blue-600 mb-4">
+                    Read More →
+                </a>
             </div>
         </div>
 
