@@ -24,10 +24,10 @@ class CategorySeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            Category::create([
-            'name' => $category,
-            'slug' => Str::slug($category)
-        ]);
+                Category::updateOrCreate(
+                    ['slug' => 'technology'], // Look for this
+                    ['name' => 'Technology']  // Update or Create with this
+                );
         }
     }
 }
