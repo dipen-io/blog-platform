@@ -16,6 +16,21 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Bio -->
+        <div class="mt-4">
+            <x-input-label for="bio" :value="__('Bio')" />
+            <textarea id="bio" name="bio" rows="3"
+                class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                placeholder="Tell us something about yourself">{{ old('bio') }}</textarea>
+            <x-input-error :messages="$errors->get('bio')" class="mt-2" />
+        </div>
+        <!-- Avatar -->
+            <!-- <div class="mt-4"> -->
+            <!--     <x-input-label for="avatar" :value="__('Avatar')" /> -->
+            <!--     <input id="avatar" class="block mt-1 w-full" type="file" name="avatar" accept="image/*"> -->
+            <!--     <x-input-error :messages="$errors->get('avatar')" class="mt-2" /> -->
+            <!-- </div> -->
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

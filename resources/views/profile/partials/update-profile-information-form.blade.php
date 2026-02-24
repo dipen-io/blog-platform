@@ -46,6 +46,9 @@
                 </div>
             @endif
         </div>
+            <x-input-label for="email" :value="__('Bio')" />
+
+            <x-text-input id="email" name="bio" type="bio" class="mt-1 block w-full" :value="old('bio', $user->bio)" required autocomplete="username" />
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
