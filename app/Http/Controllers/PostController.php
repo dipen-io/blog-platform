@@ -20,14 +20,24 @@ class PostController extends Controller
      */
 
     //show all post (public)
-    public function index(): View
+    public function index(Request $request): View
     {
-        $posts = Post::with(['user','category'])
-            ->where('is_published', true)
-            ->latest()
-            ->paginate(9);
+        $query = Post::with(['user','category'])
+            ->where('is_published', true);
 
-        return view('posts.index', compact('posts'));
+        // search by title
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        //Filter by category
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+        $posts = $query->latest()->paginate(9)->withQueryString();
+        $categories = Category::all();
+
+        return view('posts.index', compact('posts', 'categories'));
     }
 
     //show single post (public)
